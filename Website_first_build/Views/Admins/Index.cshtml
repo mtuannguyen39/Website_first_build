@@ -1,0 +1,56 @@
+﻿@model Website_first_build.Models.Admin
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+@using (Html.BeginForm("LoginAccount", "AdminUsers"))
+{
+    @Html.AntiForgeryToken()
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                @* INPUT NAME *@
+                @Html.TextBoxFor(model => model.NameUser, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.NameUser)
+                @* INPUT EMAIL *@
+                @Html.TextBoxFor(model => model.Email, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.Email)
+                @* INPUT PASSWORD *@
+                @Html.PasswordFor(model => model.PasswordUser, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.PasswordUser)
+                <button>Sign up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your Account</span>
+                @* INPUT EMAIL *@
+                @Html.TextBoxFor(model => model.Email, new {@class = "input"})
+                @Html.ValidationMessageFor(model => model.Email)
+                @* INPUT PASSWORD *@
+                @Html.PasswordFor(model => model.PasswordUser, new {@class = "input"})
+                @Html.ValidationMessageFor(model => model.PasswordUser)
+                <a href="#">Forgot your account?</a>
+                <button>Sign in</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/52df58e152.js" crossorigin="anonymous"></script>
+}

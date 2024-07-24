@@ -1,0 +1,235 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* background-color: #24252A; */
+}
+
+body {
+    overflow-y: auto;
+}
+
+li, a, button {
+    font-family: "Montserrat", sans-serif;
+    /* color: #edf0f1; */
+    font-weight: bolder;
+    color: #000;
+    text-decoration: none;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #fdf4fb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+.nav__links {
+    list-style: none;
+    font-weight: 800;
+}
+
+    .nav__links li {
+        display: inline-block;
+        padding: 0px 20px;
+    }
+
+        .nav__links li a {
+            transition: all 0.3s ease 0s;
+        }
+
+            .nav__links li a:hover {
+                color: #0088a9;
+            }
+
+/* button {
+    padding: 9px 25px;
+    background-color: rgba(0,136,169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(0,136,169,0.8);
+
+} */
+
+/* CATEGORY LARGE - category tràn full màn hình */
+
+
+
+/* SEARCH BOX */
+
+.search-box {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+
+.input-search {
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #eba8ae;
+    padding-right: 40px;
+    color: #000;
+}
+
+    .input-search::placeholder {
+        color: #ccc;
+        font-size: 18px;
+        letter-spacing: 2px;
+        font-weight: 100;
+    }
+
+.btn-search {
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color: #444;
+    background-color: transparent;
+    pointer-events: painted;
+}
+
+.btn-search:focus ~ .input-search {
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid #777;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.input-search:focus {
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid #777;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+/* ---------------- FOOTER ------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.footer-container {
+    max-width: 1170px;
+    margin: auto;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.footer {
+    background-color: #24262b;
+    padding: 70px 0;
+}
+
+.footer-col {
+    width: 25%;
+    padding: 0 25px;
+}
+
+    .footer-col h4 {
+        font-size: 18px;
+        color: #ffffff;
+        text-transform: capitalize;
+        margin-bottom: 35px;
+        font-weight: 500;
+        position: relative;
+    }
+
+        .footer-col h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #e91e63;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+    .footer-col ul li:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+        font-size: 16px;
+        text-transform: capitalize;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 300;
+        color: #bbbbbb;
+        display: block;
+        transition: all .3s ease;
+    }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+            padding-left: 8px;
+        }
+
+    .footer-col .social-links a {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        background-color: rgba(255,255,255,0.2);
+        margin: 0 10 10 0;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        color: #fff;
+        transition: all .5s ease;
+    }
+
+        .footer-col .social-links a:hover {
+            color: #24262b;
+            background-color: #fff;
+        }
+
+/* Back - to - top */
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px; /* Điều chỉnh kích thước nút theo ý muốn */
+    height: 50px;
+    background-color: #eba8ae;
+    border-radius: 50%;
+    text-align: center; /* Căn giữa icon theo chiều ngang */
+    line-height: 50px; /* Căn giữa icon theo chiều dọc */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng đổ bóng */
+}

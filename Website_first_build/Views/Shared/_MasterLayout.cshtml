@@ -4,10 +4,90 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/Content/css/masterLayout.css" rel="stylesheet">
+    <link rel="stylesheet" href="">
 </head>
 <body>
+
+    @* HEADER - Banner *@
+    <div class="first-header">
+        <div class="bannerSlide fade">
+            <a href="#">
+                <img src="~/Content/img/banner.jpg" alt="" class="img-head" style="width: 100%; height: 80px;">
+            </a>
+        </div>
+    </div>
+    @* HEADER *@
+    <header>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Năm phục vụ giới trẻ</a></li>
+                <li><a href="#">Mục vụ thiếu nhi</a></li>
+                <li><a href="#">Tài liệu</a></li>
+                <li><a href="#">Lời Chúa</a></li>
+                <li><a href="#">Danh Mục</a></li>
+            </ul>
+        </nav>
+        <!-- search box -->
+        <div class="search-box">
+            <button class="btn-search">
+                <i class="fas fa-search"></i>
+            </button>
+            <input type="text" class="input-search" placeholder="Tìm kiếm ....">
+        </div>
+        <!-- <a href="#" class="cta"><button>Contact</button></a> -->
+    </header>
+
     <div>
         @RenderBody()
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">our Services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <!-- <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                      </ul>
+                </div> -->
+                <div class="footer-col">
+                    <h4>Địa chỉ</h4>
+                    <ul>
+                        <li><a href="#">32 Tân Xuân, Phường 8, Quận Tân Bình</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Theo dõi tại</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <a href="#" id="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+    </footer>
+
+
+    <script src="https://kit.fontawesome.com/52df58e152.js" crossorigin="anonymous"></script>
+    <script src="/js/basic.js" async defer></script>
 </body>
 </html>

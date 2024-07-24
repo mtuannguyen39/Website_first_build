@@ -4,7 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b25f03b901474ee4b2ef86d6a5d29e20" Name="Diagram1">
+      <Diagram DiagramId="ff11c297ca9e45a59e4ec94fd010df6e" Name="Diagram1">
+        <EntityTypeShape EntityType="DBNhaThoModel.Admin" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBNhaThoModel.BibleVersion" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBNhaThoModel.Book" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBNhaThoModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />

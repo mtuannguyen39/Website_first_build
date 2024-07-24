@@ -13,10 +13,10 @@ namespace Website_first_build.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBNhaThoEntities : DbContext
+    public partial class DBNhaThoEntities1 : DbContext
     {
-        public DBNhaThoEntities()
-            : base("name=DBNhaThoEntities")
+        public DBNhaThoEntities1()
+            : base("name=DBNhaThoEntities1")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Website_first_build.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<BibleVersion> BibleVersions { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Category> Categories { get; set; }

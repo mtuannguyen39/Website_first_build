@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
+using Website_first_build.Models;
+using PagedList;
 
 namespace Website_first_build.Controllers
 {
@@ -24,6 +28,11 @@ namespace Website_first_build.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Main()
+        {
             return View();
         }
     }
