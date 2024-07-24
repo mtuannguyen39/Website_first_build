@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBNhaThoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BibleVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BibleVersionID" Type="int" />
+          <Property Name="BookName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="ChapterNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MinistryYear">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YearName" Type="nvarchar(max)" />
+          <Property Name="YearDes" Type="nvarchar(max)" />
+          <Property Name="IDCateYear" Type="int" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NewsDesc" Type="nvarchar(max)" />
+          <Property Name="MinistryYearID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="NewsImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsID" Type="int" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Verse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChapterID" Type="int" />
+          <Property Name="VerseNumber" Type="int" Nullable="false" />
+          <Property Name="VerseText" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Book__BibleVersi__5CD6CB2B">
+          <End Role="BibleVersion" Type="Self.BibleVersion" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BibleVersion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="BibleVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Chapter__BookID__5FB337D6">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MinistryY__IDCat__4E88ABD4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="MinistryYear" Type="Self.MinistryYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MinistryYear">
+              <PropertyRef Name="IDCateYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__CategoryID__5535A963">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__MinistryYe__5441852A">
+          <End Role="MinistryYear" Type="Self.MinistryYear" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MinistryYear">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="MinistryYearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NewsImage__NewsI__5812160E">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="NewsImage" Type="Self.NewsImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewsImage">
+              <PropertyRef Name="NewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Verse__ChapterID__628FA481">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="0..1" />
+          <End Role="Verse" Type="Self.Verse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Verse">
+              <PropertyRef Name="ChapterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBNhaThoModelStoreContainer">
+          <EntitySet Name="BibleVersion" EntityType="Self.BibleVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MinistryYear" EntityType="Self.MinistryYear" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsImage" EntityType="Self.NewsImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Verse" EntityType="Self.Verse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Book__BibleVersi__5CD6CB2B" Association="Self.FK__Book__BibleVersi__5CD6CB2B">
+            <End Role="BibleVersion" EntitySet="BibleVersion" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Chapter__BookID__5FB337D6" Association="Self.FK__Chapter__BookID__5FB337D6">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Chapter" EntitySet="Chapter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MinistryY__IDCat__4E88ABD4" Association="Self.FK__MinistryY__IDCat__4E88ABD4">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="MinistryYear" EntitySet="MinistryYear" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__CategoryID__5535A963" Association="Self.FK__News__CategoryID__5535A963">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__MinistryYe__5441852A" Association="Self.FK__News__MinistryYe__5441852A">
+            <End Role="MinistryYear" EntitySet="MinistryYear" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NewsImage__NewsI__5812160E" Association="Self.FK__NewsImage__NewsI__5812160E">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsImage" EntitySet="NewsImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Verse__ChapterID__628FA481" Association="Self.FK__Verse__ChapterID__628FA481">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="Verse" EntitySet="Verse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBNhaThoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BibleVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__BibleVersi__5CD6CB2B" FromRole="BibleVersion" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BibleVersionID" Type="Int32" />
+          <Property Name="BookName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BibleVersion" Relationship="Self.FK__Book__BibleVersi__5CD6CB2B" FromRole="Book" ToRole="BibleVersion" />
+          <NavigationProperty Name="Chapters" Relationship="Self.FK__Chapter__BookID__5FB337D6" FromRole="Book" ToRole="Chapter" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MinistryYears" Relationship="Self.FK__MinistryY__IDCat__4E88ABD4" FromRole="Category" ToRole="MinistryYear" />
+          <NavigationProperty Name="News" Relationship="Self.FK__News__CategoryID__5535A963" FromRole="Category" ToRole="News" />
+        </EntityType>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" />
+          <Property Name="ChapterNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__Chapter__BookID__5FB337D6" FromRole="Chapter" ToRole="Book" />
+          <NavigationProperty Name="Verses" Relationship="Self.FK__Verse__ChapterID__628FA481" FromRole="Chapter" ToRole="Verse" />
+        </EntityType>
+        <EntityType Name="MinistryYear">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YearName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearDes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDCateYear" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__MinistryY__IDCat__4E88ABD4" FromRole="MinistryYear" ToRole="Category" />
+          <NavigationProperty Name="News" Relationship="Self.FK__News__MinistryYe__5441852A" FromRole="MinistryYear" ToRole="News" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NewsDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MinistryYearID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__News__CategoryID__5535A963" FromRole="News" ToRole="Category" />
+          <NavigationProperty Name="MinistryYear" Relationship="Self.FK__News__MinistryYe__5441852A" FromRole="News" ToRole="MinistryYear" />
+          <NavigationProperty Name="NewsImages" Relationship="Self.FK__NewsImage__NewsI__5812160E" FromRole="News" ToRole="NewsImage" />
+        </EntityType>
+        <EntityType Name="NewsImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsID" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="Self.FK__NewsImage__NewsI__5812160E" FromRole="NewsImage" ToRole="News" />
+        </EntityType>
+        <EntityType Name="Verse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChapterID" Type="Int32" />
+          <Property Name="VerseNumber" Type="Int32" Nullable="false" />
+          <Property Name="VerseText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Chapter" Relationship="Self.FK__Verse__ChapterID__628FA481" FromRole="Verse" ToRole="Chapter" />
+        </EntityType>
+        <Association Name="FK__Book__BibleVersi__5CD6CB2B">
+          <End Role="BibleVersion" Type="Self.BibleVersion" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BibleVersion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="BibleVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Chapter__BookID__5FB337D6">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MinistryY__IDCat__4E88ABD4">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="MinistryYear" Type="Self.MinistryYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MinistryYear">
+              <PropertyRef Name="IDCateYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__CategoryID__5535A963">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Verse__ChapterID__628FA481">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="0..1" />
+          <End Role="Verse" Type="Self.Verse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Verse">
+              <PropertyRef Name="ChapterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__MinistryYe__5441852A">
+          <End Role="MinistryYear" Type="Self.MinistryYear" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MinistryYear">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="MinistryYearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NewsImage__NewsI__5812160E">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="NewsImage" Type="Self.NewsImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewsImage">
+              <PropertyRef Name="NewsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBNhaThoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BibleVersions" EntityType="Self.BibleVersion" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Chapters" EntityType="Self.Chapter" />
+          <EntitySet Name="MinistryYears" EntityType="Self.MinistryYear" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="NewsImages" EntityType="Self.NewsImage" />
+          <EntitySet Name="Verses" EntityType="Self.Verse" />
+          <AssociationSet Name="FK__Book__BibleVersi__5CD6CB2B" Association="Self.FK__Book__BibleVersi__5CD6CB2B">
+            <End Role="BibleVersion" EntitySet="BibleVersions" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Chapter__BookID__5FB337D6" Association="Self.FK__Chapter__BookID__5FB337D6">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MinistryY__IDCat__4E88ABD4" Association="Self.FK__MinistryY__IDCat__4E88ABD4">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="MinistryYear" EntitySet="MinistryYears" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__CategoryID__5535A963" Association="Self.FK__News__CategoryID__5535A963">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Verse__ChapterID__628FA481" Association="Self.FK__Verse__ChapterID__628FA481">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="Verse" EntitySet="Verses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__MinistryYe__5441852A" Association="Self.FK__News__MinistryYe__5441852A">
+            <End Role="MinistryYear" EntitySet="MinistryYears" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NewsImage__NewsI__5812160E" Association="Self.FK__NewsImage__NewsI__5812160E">
+            <End Role="News" EntitySet="News" />
+            <End Role="NewsImage" EntitySet="NewsImages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBNhaThoModelStoreContainer" CdmEntityContainer="DBNhaThoEntities">
+          <EntitySetMapping Name="BibleVersions">
+            <EntityTypeMapping TypeName="DBNhaThoModel.BibleVersion">
+              <MappingFragment StoreEntitySet="BibleVersion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="DBNhaThoModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BibleVersionID" ColumnName="BibleVersionID" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DBNhaThoModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chapters">
+            <EntityTypeMapping TypeName="DBNhaThoModel.Chapter">
+              <MappingFragment StoreEntitySet="Chapter">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="ChapterNumber" ColumnName="ChapterNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MinistryYears">
+            <EntityTypeMapping TypeName="DBNhaThoModel.MinistryYear">
+              <MappingFragment StoreEntitySet="MinistryYear">
+                <ScalarProperty Name="YearID" ColumnName="YearID" />
+                <ScalarProperty Name="YearName" ColumnName="YearName" />
+                <ScalarProperty Name="YearDes" ColumnName="YearDes" />
+                <ScalarProperty Name="IDCateYear" ColumnName="IDCateYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="DBNhaThoModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NewsTitle" ColumnName="NewsTitle" />
+                <ScalarProperty Name="NewsDesc" ColumnName="NewsDesc" />
+                <ScalarProperty Name="MinistryYearID" ColumnName="MinistryYearID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsImages">
+            <EntityTypeMapping TypeName="DBNhaThoModel.NewsImage">
+              <MappingFragment StoreEntitySet="NewsImage">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Verses">
+            <EntityTypeMapping TypeName="DBNhaThoModel.Verse">
+              <MappingFragment StoreEntitySet="Verse">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ChapterID" ColumnName="ChapterID" />
+                <ScalarProperty Name="VerseNumber" ColumnName="VerseNumber" />
+                <ScalarProperty Name="VerseText" ColumnName="VerseText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
