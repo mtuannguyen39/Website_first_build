@@ -145,8 +145,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\BibleVersionsController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ChaptersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MinistryYearsController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NewsImagesController.cs" />
+    <Compile Include="Controllers\VersesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +219,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\admin_page.css" />
+    <Content Include="Content\css\login&amp;signup.css" />
     <Content Include="Content\css\mainLayout.css" />
     <Content Include="Content\css\masterLayout.css" />
     <Content Include="Content\img\1.jpg" />
@@ -225,6 +233,7 @@
     <Content Include="Content\img\people.png" />
     <Content Include="Content\javascript\admin_page.js" />
     <Content Include="Content\javascript\basic.js" />
+    <Content Include="Content\javascript\login.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -283,11 +292,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
-    <Content Include="Views\News\Create.cshtml" />
-    <Content Include="Views\News\Delete.cshtml" />
-    <Content Include="Views\News\Details.cshtml" />
-    <Content Include="Views\News\Edit.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayoutPage.cshtml" />
     <Content Include="Views\Admins\Create.cshtml" />
     <Content Include="Views\Admins\Delete.cshtml" />
@@ -296,6 +300,46 @@
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Admins\ViewAd.cshtml" />
     <Content Include="Views\Admins\RegisterUser.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\NewsImages\Create.cshtml" />
+    <Content Include="Views\NewsImages\Delete.cshtml" />
+    <Content Include="Views\NewsImages\Details.cshtml" />
+    <Content Include="Views\NewsImages\Edit.cshtml" />
+    <Content Include="Views\NewsImages\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\MinistryYears\Create.cshtml" />
+    <Content Include="Views\MinistryYears\Delete.cshtml" />
+    <Content Include="Views\MinistryYears\Details.cshtml" />
+    <Content Include="Views\MinistryYears\Edit.cshtml" />
+    <Content Include="Views\MinistryYears\Index.cshtml" />
+    <Content Include="Views\Books\Create.cshtml" />
+    <Content Include="Views\Books\Delete.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\BibleVersions\Create.cshtml" />
+    <Content Include="Views\BibleVersions\Delete.cshtml" />
+    <Content Include="Views\BibleVersions\Details.cshtml" />
+    <Content Include="Views\BibleVersions\Edit.cshtml" />
+    <Content Include="Views\BibleVersions\Index.cshtml" />
+    <Content Include="Views\Chapters\Create.cshtml" />
+    <Content Include="Views\Chapters\Delete.cshtml" />
+    <Content Include="Views\Chapters\Details.cshtml" />
+    <Content Include="Views\Chapters\Edit.cshtml" />
+    <Content Include="Views\Chapters\Index.cshtml" />
+    <Content Include="Views\Verses\Create.cshtml" />
+    <Content Include="Views\Verses\Delete.cshtml" />
+    <Content Include="Views\Verses\Details.cshtml" />
+    <Content Include="Views\Verses\Edit.cshtml" />
+    <Content Include="Views\Verses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

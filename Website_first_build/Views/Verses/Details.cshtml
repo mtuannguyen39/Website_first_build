@@ -1,0 +1,43 @@
+﻿@model Website_first_build.Models.Verse
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Verse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VerseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VerseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VerseText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VerseText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chapter.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chapter.ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
 <h2>Details</h2>
@@ -25,6 +25,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.NewsDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainImage)
         </dd>
 
         <dt>

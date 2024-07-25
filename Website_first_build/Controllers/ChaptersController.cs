@@ -10,116 +10,112 @@ using Website_first_build.Models;
 
 namespace Website_first_build.Controllers
 {
-    public class NewsController : Controller
+    public class ChaptersController : Controller
     {
         private DBNhaThoEntities db = new DBNhaThoEntities();
 
-        // GET: News
+        // GET: Chapters
         public ActionResult Index()
         {
-            var news = db.News.Include(n => n.Category).Include(n => n.MinistryYear);
-            return View(news.ToList());
+            var chapters = db.Chapters.Include(c => c.Book);
+            return View(chapters.ToList());
         }
 
-        // GET: News/Details/5
+        // GET: Chapters/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Chapter chapter = db.Chapters.Find(id);
+            if (chapter == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(chapter);
         }
 
-        // GET: News/Create
+        // GET: Chapters/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName");
+            ViewBag.BookID = new SelectList(db.Books, "ID", "BookName");
             return View();
         }
 
-        // POST: News/Create
+        // POST: Chapters/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NewsTitle,NewsDesc,MinistryYearID,CategoryID,MainImage")] News news)
+        public ActionResult Create([Bind(Include = "ID,BookID,ChapterNumber")] Chapter chapter)
         {
             if (ModelState.IsValid)
             {
-                db.News.Add(news);
+                db.Chapters.Add(chapter);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", news.CategoryID);
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", news.MinistryYearID);
-            return View(news);
+            ViewBag.BookID = new SelectList(db.Books, "ID", "BookName", chapter.BookID);
+            return View(chapter);
         }
 
-        // GET: News/Edit/5
+        // GET: Chapters/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Chapter chapter = db.Chapters.Find(id);
+            if (chapter == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", news.CategoryID);
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", news.MinistryYearID);
-            return View(news);
+            ViewBag.BookID = new SelectList(db.Books, "ID", "BookName", chapter.BookID);
+            return View(chapter);
         }
 
-        // POST: News/Edit/5
+        // POST: Chapters/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NewsTitle,NewsDesc,MinistryYearID,CategoryID,MainImage")] News news)
+        public ActionResult Edit([Bind(Include = "ID,BookID,ChapterNumber")] Chapter chapter)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                db.Entry(chapter).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", news.CategoryID);
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", news.MinistryYearID);
-            return View(news);
+            ViewBag.BookID = new SelectList(db.Books, "ID", "BookName", chapter.BookID);
+            return View(chapter);
         }
 
-        // GET: News/Delete/5
+        // GET: Chapters/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Chapter chapter = db.Chapters.Find(id);
+            if (chapter == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(chapter);
         }
 
-        // POST: News/Delete/5
+        // POST: Chapters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
+            Chapter chapter = db.Chapters.Find(id);
+            db.Chapters.Remove(chapter);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

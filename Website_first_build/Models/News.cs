@@ -25,6 +25,7 @@ namespace Website_first_build.Models
         public string NewsDesc { get; set; }
         public Nullable<int> MinistryYearID { get; set; }
         public Nullable<int> CategoryID { get; set; }
+        public string MainImage { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual MinistryYear MinistryYear { get; set; }

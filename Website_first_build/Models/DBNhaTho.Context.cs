@@ -13,10 +13,10 @@ namespace Website_first_build.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBNhaThoEntities1 : DbContext
+    public partial class DBNhaThoEntities : DbContext
     {
-        public DBNhaThoEntities1()
-            : base("name=DBNhaThoEntities1")
+        public DBNhaThoEntities()
+            : base("name=DBNhaThoEntities")
         {
         }
     

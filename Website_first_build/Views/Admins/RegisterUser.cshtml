@@ -4,4 +4,43 @@
     Layout = null;
 }
 
+<link rel="stylesheet" href="~/Content/css/login&signup.css">
+
+@using (Html.BeginForm("RegisterUser", "Admins", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="wrapper">
+        <div class="form signup">
+            <header>Signup</header>
+            <form action="#">
+                @*<input type="text" placeholder="FullName" required>*@
+                @Html.TextBoxFor(model => model.NameUser, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.NameUser)
+                @*<input type="text" placeholder="Email address" required>*@
+                @Html.TextBoxFor(model => model.Email, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.Email)
+                @*<input type="password" placeholder="Password" required>*@
+                @Html.PasswordFor(model => model.PasswordUser, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.PasswordUser)
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck">
+                    <label for="signupCheck">I accept all terms & conditions</label>
+                </div>
+                <input type="submit" value="Signup">
+            </form>
+        </div>
+    </section>
+    <script>
+            const wrapper = document.querySelector('.wrapper'),
+            signupHeader = document.querySelector('.signup header'),
+            loginHeader = document.querySelector('.login header');
+
+            loginHeader.addEventListener("click", () => {
+                wrapper.classList.add("active");
+            })
+            signupHeader.addEventListener("click", () => {
+                wrapper.classList.remove("active");
+            })
+    </script>
+}
 

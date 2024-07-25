@@ -17,6 +17,7 @@ namespace Website_first_build.Models
         public int ID { get; set; }
         public Nullable<int> NewsID { get; set; }
         public string ImagePath { get; set; }
+        public Nullable<int> OrderIndex { get; set; }
     
         public virtual News News { get; set; }
     }

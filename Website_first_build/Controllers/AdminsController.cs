@@ -12,7 +12,7 @@ namespace Website_first_build.Controllers
 {
     public class AdminsController : Controller
     {
-        private DBNhaThoEntities1 db = new DBNhaThoEntities1();
+        private DBNhaThoEntities db = new DBNhaThoEntities();
 
         // GET: Admins
         public ActionResult Index()
@@ -33,15 +33,18 @@ namespace Website_first_build.Controllers
                 db.Configuration.ValidateOnSaveEnabled = false;
                 Session["ID"] = _user.ID;
                 Session["NameUser"] = _user.NameUser;
+                Session["RoleUser"] = check.RoleUser;
                 Session["PasswordUser"] = _user.PasswordUser;
-                Session["RoleUser"] = _user.RoleUser;
                 Session["Email"] = _user.Email;
                 if (check.RoleUser.ToString() == "Admin")
-                    return RedirectToAction("ADIndex", "News");
+                    return RedirectToAction("ViewAd", "Admins");
+
                 else if (check.RoleUser.ToString() == "DangTin")
                     return RedirectToAction("Index", "News");
+
                 else if (check.RoleUser.ToString() == "QuanLy")
                     return RedirectToAction("Index", "Users");
+
                 else return RedirectToAction("Index", "LoginUser");
             }
         }
@@ -49,7 +52,7 @@ namespace Website_first_build.Controllers
         public ActionResult LogOutUserAd()
         {
             Session.Remove("NameUser");
-            return RedirectToAction("Index", "AdminUsers");
+            return RedirectToAction("Index", "Admins");
         }
 
         [HttpGet]
@@ -69,7 +72,7 @@ namespace Website_first_build.Controllers
                     db.Configuration.ValidateOnSaveEnabled = false;
                     db.Admins.Add(_user);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "AdminUsers");
+                    return RedirectToAction("Index", "Admins");
                 }
                 else
                 {

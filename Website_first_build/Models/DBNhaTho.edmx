@@ -63,6 +63,7 @@
           <Property Name="NewsDesc" Type="nvarchar(max)" />
           <Property Name="MinistryYearID" Type="int" />
           <Property Name="CategoryID" Type="int" />
+          <Property Name="MainImage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="NewsImage">
           <Key>
@@ -71,6 +72,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NewsID" Type="int" />
           <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrderIndex" Type="int" />
         </EntityType>
         <EntityType Name="Verse">
           <Key>
@@ -276,6 +278,7 @@
           <Property Name="NewsDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MinistryYearID" Type="Int32" />
           <Property Name="CategoryID" Type="Int32" />
+          <Property Name="MainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="Self.FK__News__CategoryID__5535A963" FromRole="News" ToRole="Category" />
           <NavigationProperty Name="MinistryYear" Relationship="Self.FK__News__MinistryYe__5441852A" FromRole="News" ToRole="MinistryYear" />
           <NavigationProperty Name="NewsImages" Relationship="Self.FK__NewsImage__NewsI__5812160E" FromRole="News" ToRole="NewsImage" />
@@ -287,6 +290,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NewsID" Type="Int32" />
           <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderIndex" Type="Int32" />
           <NavigationProperty Name="News" Relationship="Self.FK__NewsImage__NewsI__5812160E" FromRole="NewsImage" ToRole="News" />
         </EntityType>
         <EntityType Name="Verse">
@@ -383,7 +387,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBNhaThoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBNhaThoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="BibleVersions" EntityType="Self.BibleVersion" />
           <EntitySet Name="Books" EntityType="Self.Book" />
@@ -427,7 +431,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBNhaThoModelStoreContainer" CdmEntityContainer="DBNhaThoEntities1">
+        <EntityContainerMapping StorageEntityContainer="DBNhaThoModelStoreContainer" CdmEntityContainer="DBNhaThoEntities">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="DBNhaThoModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
@@ -491,6 +495,7 @@
                 <ScalarProperty Name="NewsDesc" ColumnName="NewsDesc" />
                 <ScalarProperty Name="MinistryYearID" ColumnName="MinistryYearID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -500,6 +505,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NewsID" ColumnName="NewsID" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
