@@ -31,7 +31,7 @@ namespace Website_first_build.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Chapter> Chapters { get; set; }
         public virtual DbSet<MinistryYear> MinistryYears { get; set; }
-        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<New> News { get; set; }
         public virtual DbSet<NewsImage> NewsImages { get; set; }
         public virtual DbSet<Verse> Verses { get; set; }
     }

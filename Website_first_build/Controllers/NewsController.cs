@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -28,12 +29,12 @@ namespace Website_first_build.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            New @new = db.News.Find(id);
+            if (@new == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(@new);
         }
 
         // GET: News/Create
@@ -49,18 +50,29 @@ namespace Website_first_build.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NewsTitle,NewsDesc,MinistryYearID,CategoryID,MainImage")] News news)
+        public ActionResult Create(New @new, HttpPostedFileBase uploadHinh)
         {
-            if (ModelState.IsValid)
-            {
-                db.News.Add(news);
+                if(uploadHinh != null && uploadHinh.ContentLength > 0)
+                {
+                    int id = int.Parse(db.News.ToList().Last().ID.ToString());
+
+                    string _FileName = "";
+                    int index = uploadHinh.FileName.IndexOf('.');
+                    _FileName = "news" + id.ToString() + "." + uploadHinh.FileName.Substring(index + 1);
+                    string _path = Path.Combine(Server.MapPath("~/Images/Upload"), _FileName);
+                    uploadHinh.SaveAs(_path);
+
+                    New unv = db.News.FirstOrDefault(x => x.ID == id);
+                    unv.MainImage = _FileName;
+                    db.SaveChanges();
+            }
+                db.News.Add(@new);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
 
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", news.CategoryID);
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", news.MinistryYearID);
-            return View(news);
+            //ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", @new.CategoryID);
+            //ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", @new.MinistryYearID);
+            //return View(@new);
         }
 
         // GET: News/Edit/5
@@ -70,14 +82,14 @@ namespace Website_first_build.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            New @new = db.News.Find(id);
+            if (@new == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", news.CategoryID);
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", news.MinistryYearID);
-            return View(news);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", @new.CategoryID);
+            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", @new.MinistryYearID);
+            return View(@new);
         }
 
         // POST: News/Edit/5
@@ -85,17 +97,32 @@ namespace Website_first_build.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NewsTitle,NewsDesc,MinistryYearID,CategoryID,MainImage")] News news)
+        public ActionResult Edit(New @new, HttpPostedFileBase uploadHinh)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                New news = db.News.FirstOrDefault(x => x.ID == @new.ID);
+                news.NewsTitle = @new.NewsTitle;
+                news.NewsDesc = @new.NewsDesc;
+                news.MinistryYearID = @new.MinistryYearID;
+                news.CategoryID = @new.CategoryID;
+                news.MainImage = @new.MainImage;
+                if(uploadHinh != null && uploadHinh.ContentLength > 0)
+                {
+                    int id = @new.ID;
+                    string _FileName = "";
+                    int index = uploadHinh.FileName.IndexOf('.');
+                    _FileName = id.ToString() + "." + uploadHinh.FileName.Substring(index + 1);
+                    string _path = Path.Combine(Server.MapPath("~/Images/Upload"), _FileName);
+                    uploadHinh.SaveAs(_path);
+                    news.MainImage = _FileName;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", news.CategoryID);
-            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", news.MinistryYearID);
-            return View(news);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", @new.CategoryID);
+            ViewBag.MinistryYearID = new SelectList(db.MinistryYears, "YearID", "YearName", @new.MinistryYearID);
+            return View(@new);
         }
 
         // GET: News/Delete/5
@@ -105,12 +132,12 @@ namespace Website_first_build.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            New @new = db.News.Find(id);
+            if (@new == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(@new);
         }
 
         // POST: News/Delete/5
@@ -118,8 +145,8 @@ namespace Website_first_build.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
+            New @new = db.News.Find(id);
+            db.News.Remove(@new);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -54,7 +54,7 @@
           <Property Name="YearDes" Type="nvarchar(max)" />
           <Property Name="IDCateYear" Type="int" />
         </EntityType>
-        <EntityType Name="News">
+        <EntityType Name="New">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -72,7 +72,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NewsID" Type="int" />
           <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="OrderIndex" Type="int" />
         </EntityType>
         <EntityType Name="Verse">
           <Key>
@@ -119,35 +118,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__News__CategoryID__5535A963">
+        <Association Name="FK__New__CategoryID__7E37BEF6">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <End Role="New" Type="Self.New" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="News">
+            <Dependent Role="New">
               <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__News__MinistryYe__5441852A">
+        <Association Name="FK__New__MinistryYea__7D439ABD">
           <End Role="MinistryYear" Type="Self.MinistryYear" Multiplicity="0..1" />
-          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <End Role="New" Type="Self.New" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MinistryYear">
               <PropertyRef Name="YearID" />
             </Principal>
-            <Dependent Role="News">
+            <Dependent Role="New">
               <PropertyRef Name="MinistryYearID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsImage__NewsI__5812160E">
-          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+        <Association Name="FK__NewsImage__NewsI__03F0984C">
+          <End Role="New" Type="Self.New" Multiplicity="0..1" />
           <End Role="NewsImage" Type="Self.NewsImage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="News">
+            <Principal Role="New">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="NewsImage">
@@ -174,7 +173,7 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MinistryYear" EntityType="Self.MinistryYear" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="New" EntityType="Self.New" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsImage" EntityType="Self.NewsImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Verse" EntityType="Self.Verse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Book__BibleVersi__5CD6CB2B" Association="Self.FK__Book__BibleVersi__5CD6CB2B">
@@ -189,16 +188,16 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="MinistryYear" EntitySet="MinistryYear" />
           </AssociationSet>
-          <AssociationSet Name="FK__News__CategoryID__5535A963" Association="Self.FK__News__CategoryID__5535A963">
+          <AssociationSet Name="FK__New__CategoryID__7E37BEF6" Association="Self.FK__New__CategoryID__7E37BEF6">
             <End Role="Category" EntitySet="Category" />
-            <End Role="News" EntitySet="News" />
+            <End Role="New" EntitySet="New" />
           </AssociationSet>
-          <AssociationSet Name="FK__News__MinistryYe__5441852A" Association="Self.FK__News__MinistryYe__5441852A">
+          <AssociationSet Name="FK__New__MinistryYea__7D439ABD" Association="Self.FK__New__MinistryYea__7D439ABD">
             <End Role="MinistryYear" EntitySet="MinistryYear" />
-            <End Role="News" EntitySet="News" />
+            <End Role="New" EntitySet="New" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsImage__NewsI__5812160E" Association="Self.FK__NewsImage__NewsI__5812160E">
-            <End Role="News" EntitySet="News" />
+          <AssociationSet Name="FK__NewsImage__NewsI__03F0984C" Association="Self.FK__NewsImage__NewsI__03F0984C">
+            <End Role="New" EntitySet="New" />
             <End Role="NewsImage" EntitySet="NewsImage" />
           </AssociationSet>
           <AssociationSet Name="FK__Verse__ChapterID__628FA481" Association="Self.FK__Verse__ChapterID__628FA481">
@@ -246,7 +245,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="MinistryYears" Relationship="Self.FK__MinistryY__IDCat__4E88ABD4" FromRole="Category" ToRole="MinistryYear" />
-          <NavigationProperty Name="News" Relationship="Self.FK__News__CategoryID__5535A963" FromRole="Category" ToRole="News" />
+          <NavigationProperty Name="News" Relationship="Self.FK__New__CategoryID__7E37BEF6" FromRole="Category" ToRole="New" />
         </EntityType>
         <EntityType Name="Chapter">
           <Key>
@@ -267,9 +266,9 @@
           <Property Name="YearDes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDCateYear" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK__MinistryY__IDCat__4E88ABD4" FromRole="MinistryYear" ToRole="Category" />
-          <NavigationProperty Name="News" Relationship="Self.FK__News__MinistryYe__5441852A" FromRole="MinistryYear" ToRole="News" />
+          <NavigationProperty Name="News" Relationship="Self.FK__New__MinistryYea__7D439ABD" FromRole="MinistryYear" ToRole="New" />
         </EntityType>
-        <EntityType Name="News">
+        <EntityType Name="New">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -279,9 +278,9 @@
           <Property Name="MinistryYearID" Type="Int32" />
           <Property Name="CategoryID" Type="Int32" />
           <Property Name="MainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__News__CategoryID__5535A963" FromRole="News" ToRole="Category" />
-          <NavigationProperty Name="MinistryYear" Relationship="Self.FK__News__MinistryYe__5441852A" FromRole="News" ToRole="MinistryYear" />
-          <NavigationProperty Name="NewsImages" Relationship="Self.FK__NewsImage__NewsI__5812160E" FromRole="News" ToRole="NewsImage" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__New__CategoryID__7E37BEF6" FromRole="New" ToRole="Category" />
+          <NavigationProperty Name="MinistryYear" Relationship="Self.FK__New__MinistryYea__7D439ABD" FromRole="New" ToRole="MinistryYear" />
+          <NavigationProperty Name="NewsImages" Relationship="Self.FK__NewsImage__NewsI__03F0984C" FromRole="New" ToRole="NewsImage" />
         </EntityType>
         <EntityType Name="NewsImage">
           <Key>
@@ -290,8 +289,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NewsID" Type="Int32" />
           <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrderIndex" Type="Int32" />
-          <NavigationProperty Name="News" Relationship="Self.FK__NewsImage__NewsI__5812160E" FromRole="NewsImage" ToRole="News" />
+          <NavigationProperty Name="New" Relationship="Self.FK__NewsImage__NewsI__03F0984C" FromRole="NewsImage" ToRole="New" />
         </EntityType>
         <EntityType Name="Verse">
           <Key>
@@ -339,14 +337,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__News__CategoryID__5535A963">
+        <Association Name="FK__New__CategoryID__7E37BEF6">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <End Role="New" Type="Self.New" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="News">
+            <Dependent Role="New">
               <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
@@ -363,23 +361,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__News__MinistryYe__5441852A">
+        <Association Name="FK__New__MinistryYea__7D439ABD">
           <End Role="MinistryYear" Type="Self.MinistryYear" Multiplicity="0..1" />
-          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <End Role="New" Type="Self.New" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MinistryYear">
               <PropertyRef Name="YearID" />
             </Principal>
-            <Dependent Role="News">
+            <Dependent Role="New">
               <PropertyRef Name="MinistryYearID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsImage__NewsI__5812160E">
-          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+        <Association Name="FK__NewsImage__NewsI__03F0984C">
+          <End Role="New" Type="Self.New" Multiplicity="0..1" />
           <End Role="NewsImage" Type="Self.NewsImage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="News">
+            <Principal Role="New">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="NewsImage">
@@ -394,7 +392,7 @@
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Chapters" EntityType="Self.Chapter" />
           <EntitySet Name="MinistryYears" EntityType="Self.MinistryYear" />
-          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="News" EntityType="Self.New" />
           <EntitySet Name="NewsImages" EntityType="Self.NewsImage" />
           <EntitySet Name="Verses" EntityType="Self.Verse" />
           <AssociationSet Name="FK__Book__BibleVersi__5CD6CB2B" Association="Self.FK__Book__BibleVersi__5CD6CB2B">
@@ -409,20 +407,20 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="MinistryYear" EntitySet="MinistryYears" />
           </AssociationSet>
-          <AssociationSet Name="FK__News__CategoryID__5535A963" Association="Self.FK__News__CategoryID__5535A963">
+          <AssociationSet Name="FK__New__CategoryID__7E37BEF6" Association="Self.FK__New__CategoryID__7E37BEF6">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="News" EntitySet="News" />
+            <End Role="New" EntitySet="News" />
           </AssociationSet>
           <AssociationSet Name="FK__Verse__ChapterID__628FA481" Association="Self.FK__Verse__ChapterID__628FA481">
             <End Role="Chapter" EntitySet="Chapters" />
             <End Role="Verse" EntitySet="Verses" />
           </AssociationSet>
-          <AssociationSet Name="FK__News__MinistryYe__5441852A" Association="Self.FK__News__MinistryYe__5441852A">
+          <AssociationSet Name="FK__New__MinistryYea__7D439ABD" Association="Self.FK__New__MinistryYea__7D439ABD">
             <End Role="MinistryYear" EntitySet="MinistryYears" />
-            <End Role="News" EntitySet="News" />
+            <End Role="New" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsImage__NewsI__5812160E" Association="Self.FK__NewsImage__NewsI__5812160E">
-            <End Role="News" EntitySet="News" />
+          <AssociationSet Name="FK__NewsImage__NewsI__03F0984C" Association="Self.FK__NewsImage__NewsI__03F0984C">
+            <End Role="New" EntitySet="News" />
             <End Role="NewsImage" EntitySet="NewsImages" />
           </AssociationSet>
         </EntityContainer>
@@ -488,8 +486,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="DBNhaThoModel.News">
-              <MappingFragment StoreEntitySet="News">
+            <EntityTypeMapping TypeName="DBNhaThoModel.New">
+              <MappingFragment StoreEntitySet="New">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NewsTitle" ColumnName="NewsTitle" />
                 <ScalarProperty Name="NewsDesc" ColumnName="NewsDesc" />
@@ -505,7 +503,6 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NewsID" ColumnName="NewsID" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

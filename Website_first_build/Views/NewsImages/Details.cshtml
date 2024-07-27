@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -20,19 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OrderIndex)
+            @Html.DisplayNameFor(model => model.New.NewsTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OrderIndex)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.News.NewsTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.News.NewsTitle)
+            @Html.DisplayFor(model => model.New.NewsTitle)
         </dd>
 
     </dl>

@@ -6,6 +6,7 @@
     max-width: 100%;
     position: relative;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 /* Hide the images by default */
@@ -202,10 +203,11 @@
     border-left: solid 2px #000;
     position: relative;
     float: right;
+    margin-top: -250px;
 }
 
 .content-title-right {
-    margin-top: -519px;
+    /*margin-top: -250px;*/
     margin-right: 150px;
     font-family: "Montserrat", sans-serif;
     font-size: 30px;

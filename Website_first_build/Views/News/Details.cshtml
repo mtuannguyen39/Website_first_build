@@ -1,14 +1,14 @@
-﻿@model Website_first_build.Models.News
+﻿@model Website_first_build.Models.New
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>News</h4>
+    <h4>New</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MainImage)
+            <img src="~/Images/Upload/@Model.MainImage" alt="Image" style="width: 700px; height: 450px;" />
         </dd>
 
         <dt>

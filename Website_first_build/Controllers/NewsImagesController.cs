@@ -17,7 +17,7 @@ namespace Website_first_build.Controllers
         // GET: NewsImages
         public ActionResult Index()
         {
-            var newsImages = db.NewsImages.Include(n => n.News);
+            var newsImages = db.NewsImages.Include(n => n.New);
             return View(newsImages.ToList());
         }
 
@@ -48,7 +48,7 @@ namespace Website_first_build.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NewsID,ImagePath,OrderIndex")] NewsImage newsImage)
+        public ActionResult Create([Bind(Include = "ID,NewsID,ImagePath")] NewsImage newsImage)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Website_first_build.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NewsID,ImagePath,OrderIndex")] NewsImage newsImage)
+        public ActionResult Edit([Bind(Include = "ID,NewsID,ImagePath")] NewsImage newsImage)
         {
             if (ModelState.IsValid)
             {

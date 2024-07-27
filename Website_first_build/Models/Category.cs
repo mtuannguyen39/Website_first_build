@@ -18,7 +18,7 @@ namespace Website_first_build.Models
         public Category()
         {
             this.MinistryYears = new HashSet<MinistryYear>();
-            this.News = new HashSet<News>();
+            this.News = new HashSet<New>();
         }
     
         public int ID { get; set; }
@@ -27,6 +27,6 @@ namespace Website_first_build.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MinistryYear> MinistryYears { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<New> News { get; set; }
     }
 }

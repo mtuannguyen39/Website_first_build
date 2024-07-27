@@ -12,6 +12,8 @@ namespace Website_first_build.Controllers
 {
     public class HomeController : Controller
     {
+        private DBNhaThoEntities db = new DBNhaThoEntities();
+
         public ActionResult Index()
         {
             return View();
@@ -33,7 +35,8 @@ namespace Website_first_build.Controllers
 
         public ActionResult Main()
         {
-            return View();
+            var newsItems = db.News.ToList();
+            return View(newsItems);
         }
     }
 }

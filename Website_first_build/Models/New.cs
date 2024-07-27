@@ -12,10 +12,10 @@ namespace Website_first_build.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class News
+    public partial class New
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public News()
+        public New()
         {
             this.NewsImages = new HashSet<NewsImage>();
         }
