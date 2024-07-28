@@ -65,7 +65,7 @@ namespace Website_first_build.Controllers
                     New unv = db.News.FirstOrDefault(x => x.ID == id);
                     unv.MainImage = _FileName;
                     db.SaveChanges();
-            }
+                }
                 db.News.Add(@new);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -203,11 +203,12 @@
     border-left: solid 2px #000;
     position: relative;
     float: right;
-    margin-top: -250px;
+    /*margin-top: -250px;*/
 }
 
 .content-title-right {
     /*margin-top: -250px;*/
+    margin-top: -519px;
     margin-right: 150px;
     font-family: "Montserrat", sans-serif;
     font-size: 30px;

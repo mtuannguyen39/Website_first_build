@@ -33,10 +33,36 @@ namespace Website_first_build.Controllers
             return View();
         }
 
-        public ActionResult Main()
+        public ActionResult Main(int? category, int? page, string SearchString, double min = double.MinValue, double max = double.MaxValue) 
         {
+            // Tạo tin tức và có tham chiếu đến category
+            var news = db.News.Include(p => p.Category);
+            // Tìm kiếm chuỗi truy vấn theo category
+            if(category == null)
+            {
+                news = db.News.OrderByDescending(x => x.NewsTitle);
+            }
+            else
+            {
+                news = db.News.OrderByDescending(x => x.CategoryID);
+            }
+            // Tìm kiếm theo tên
+            if(!String.IsNullOrEmpty(SearchString))
+            {
+                news = news.Where(s => s.NewsTitle.ToLower().Contains(SearchString));
+            }
+
+            // Khai báo mỗi trang 5 sản phẩm
+            int pageSize = 5;
+            // Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page,
+            //còn nếu page == null thì lấy giá trị 1 cho biến pageNumber
+            int pageNumber = (page ?? 1);
+
+            //Nếu page == null thì đặt lại page là 1 
+            if (page == null) page = 1;
+
             var newsItems = db.News.ToList();
-            return View(newsItems);
+            return View(news.ToPagedList(pageNumber,pageSize));
         }
     }
 }

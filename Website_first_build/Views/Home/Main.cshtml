@@ -1,18 +1,14 @@
-﻿@model IEnumerable<Website_first_build.Models.New>
-@*@model Website_first_build.Models.New*@
-@*@using PagedList.Mvc;
-@model PagedList.PagedList<New>*@
+﻿@*@model IEnumerable<Website_first_build.Models.New>*@
+@using Website_first_build.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<New>
 
 @{
     ViewBag.title = "Trang chủ";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
-    <link rel="stylesheet" href="~/Content/css/mainLayout.css">
-    <link rel="stylesheet" href="~/Content/css/masterLayout.css" />
 }
 
     <!-- CONTENT BODY -->
-@foreach (var news in Model)
-{
 <div class="container">
         <!-- Slideshow -->
         <div class="slideshow-container">
@@ -40,64 +36,67 @@
                 <div class="text">Caption four</div>
             </div>
         </div>
-        <!-- Content -->
-        <div class="grid-line">
-            <p class="content-title-left">Tin nổi bật</p>
-            <div class="content-left">
-                <div class="box">
-                    <a href="#" class="box-link">
-                        <img src="~/Images/Upload/@news.MainImage" alt="" class="img-box">
-                        <p class="box__title">@news.NewsTitle</p>
-                        <p class="box__des">@news.NewsDesc</p>
-                    </a>
+        @foreach(var news in Model)
+        {
+            <!-- Content -->
+            <div class="grid-line">
+                <p class="content-title-left">Tin nổi bật</p>
+                <div class="content-left">
+                    <div class="box">
+                        <a href="#" class="box-link">
+                            <img src="~/Images/Upload/@news.MainImage" alt="" class="img-box">
+                            <p class="box__title">@news.NewsTitle</p>
+                            <p class="box__des">@news.NewsDesc</p>
+                        </a>
+                    </div>
+                    <div class="box-small">
+                        <a href="#" class="box-link__right">
+                            <img src="~/Images/Upload/@news.MainImage" alt="" class="img-box__small">
+                            <p class="box__title-next">@news.NewsTitle</p>
+                        </a>
+                    </div>
                 </div>
-                <div class="box-small">
-                    <a href="#" class="box-link__right">
-                        <img src="~/Images/Upload/@news.MainImage" alt="" class="img-box__small">
-                        <p class="box__title-next">@news.NewsTitle</p>
+
+
+                <div class="content-right">
+                    <p class="content-title-right">Thông báo</p>
+                    <div class="card-right">
+                        <a href="#" class="card-right__link">
+                            <img src="~/Images/Upload/@news.MainImage" alt="" class="card-right__img">
+                            <p class="card-right__title">@news.NewsTitle</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-slider">
+                <h1 class="card-title-h1">Các tin tức gần đây</h1>
+                <div class="card-holder">
+                    <a href="#" class="card-holder__link">
+                        <div class="card-holder__fore t1">
+                            <img src="~/Images/Upload/@news.MainImage" alt="" class="card-holder__img">
+                            <p class="card-holder__text">
+                                @news.NewsTitle
+                            </p>
+                        </div>
                     </a>
                 </div>
             </div>
 
-
-            <div class="content-right">
-                <p class="content-title-right">Thông báo</p>
-                <div class="card-right">
-                    <a href="#" class="card-right__link">
-                        <img src="~/Images/Upload/@news.MainImage" alt="" class="card-right__img">
-                        <p class="card-right__title">@news.NewsTitle</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-slider">
-            <h1 class="card-title-h1">Các tin tức gần đây</h1>
-            <div class="card-holder">
-                <a href="#" class="card-holder__link">
-                    <div class="card-holder__fore t1">
-                        <img src="~/Images/Upload/@news.MainImage" alt="" class="card-holder__img">
-                        <p class="card-holder__text">
-                            @news.NewsTitle
-                        </p>
+            <h1 class="card-title-h1">Các tin tức khác</h1>
+            <div class="grid">
+                <a href="#" class="card-list-link">
+                    <div class="card">
+                        <img src="~/Images/Upload/@news.MainImage" alt="" class="card-img">
+                        <div class="card-text">
+                            <p class="card-title">@news.NewsTitle</p>
+                            <p class="card-description">
+                                @news.NewsDesc
+                            </p>
+                        </div>
                     </div>
                 </a>
             </div>
+        }
         </div>
 
-        <h1 class="card-title-h1">Các tin tức khác</h1>
-        <div class="grid">
-            <a href="#" class="card-list-link">
-                <div class="card">
-                    <img src="~/Images/Upload/@news.MainImage" alt="" class="card-img">
-                    <div class="card-text">
-                        <p class="card-title">@news.NewsTitle</p>
-                        <p class="card-description">
-                            @news.NewsDesc
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-}
