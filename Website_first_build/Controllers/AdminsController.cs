@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Website_first_build.Models;
+using Website_first_build.Filter;
 
 namespace Website_first_build.Controllers
 {
@@ -82,8 +83,16 @@ namespace Website_first_build.Controllers
             }
             return View();
         }
+        [CustomAuthorize] // Áp dụng bộ lọc CustomAuthorize cho hành động này
         public ActionResult ViewAd()
         {
+            return View();
+        }
+
+        [CustomAuthorize] // Áp dụng bộ lọc CustomAuthorize cho hành động này
+        public ActionResult ProtectedAction()
+        {
+            // Đây là một hành động yêu cầu đăng nhập và quyền cụ thể
             return View();
         }
     }

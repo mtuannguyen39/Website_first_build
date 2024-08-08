@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Website_first_build.Models;
+using Website_first_build.Filter;
 
 namespace Website_first_build.Controllers
 {
@@ -16,6 +17,7 @@ namespace Website_first_build.Controllers
         private DBNhaThoEntities db = new DBNhaThoEntities();
 
         // GET: News
+        [CustomAuthorize]
         public ActionResult Index()
         {
             var news = db.News.Include(n => n.Category).Include(n => n.MinistryYear);

@@ -154,6 +154,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NewsImagesController.cs" />
     <Compile Include="Controllers\VersesController.cs" />
+    <Compile Include="Filter\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

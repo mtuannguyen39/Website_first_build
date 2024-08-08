@@ -160,6 +160,11 @@
         color: #0088a9;
     }
 
+.content-left__box {
+    display: flex;
+    flex-direction: column;
+}
+
 .box-small {
 }
 
