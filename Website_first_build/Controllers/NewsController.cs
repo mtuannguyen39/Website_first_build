@@ -161,5 +161,34 @@ namespace Website_first_build.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ViewDetails(int id)
+        {
+            var singleNews = db.News.Find(id); // Lấy tin tức theo ID
+            var newsList = db.News.ToList(); // Hiển thị danh sách của tin tức
+
+            var viewModel = new NewsViewModel
+            {
+                SingleNews = singleNews,
+                NewsList = newsList
+            };
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            New news = db.News.Find(id);
+            if(news == null)
+            {
+                return HttpNotFound();
+            }
+            return View(viewModel);
+        }
+
+        public PartialViewResult CategoryPartial()
+        {
+            var cateList = db.Categories.ToList();
+            return PartialView(cateList);
+        }
     }
 }

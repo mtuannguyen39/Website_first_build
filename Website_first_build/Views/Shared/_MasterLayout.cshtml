@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/css/masterLayout.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/css/mainLayout.css">
+
 </head>
 <body>
 
@@ -32,10 +33,14 @@
         </nav>
         <!-- search box -->
         <div class="search-box">
-            <button class="btn-search">
-                <i class="fas fa-search"></i>
-            </button>
-            <input type="text" class="input-search" placeholder="Tìm kiếm ....">
+            @using (Html.BeginForm("Main", "Home", FormMethod.Get))
+            {
+                @Html.TextBox("SearchString", null, new {@class = "input-search", placeholder = "Tìm kiếm ....."})
+                <button class="btn-search">
+                    <i class="fas fa-search"></i>
+                </button>
+                @*<input type="text" class="input-search" placeholder="Tìm kiếm ....">*@
+            }
         </div>
         <!-- <a href="#" class="cta"><button>Contact</button></a> -->
     </header>

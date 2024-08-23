@@ -1,0 +1,130 @@
+﻿@model Website_first_build.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "ViewDetails";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+    <link rel="stylesheet" href="~/Content/css/newsDetails.css">
+}
+
+@helper SplitIntoParagraphs(string text)
+{
+    var paragraphs = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+    foreach (var paragraph in paragraphs)
+    {
+        <p class="main-content__p">@paragraph</p>
+    }
+}
+
+<!-- BODY -->
+<div class="container-details">
+    <div class="content">
+        <div class="content-details-left">
+            <!-- Content header (các mục ở đầu trong header) -->
+            <div class="content-header">
+                <a href="/Home/Main" class="content-header__link">
+                    <p class="content-header__home">Trang chủ</p>
+                </a>
+                <i class="fa-solid fa-chevron-right content-header__icon"></i>
+                <a href="#" class="content-header__link">
+                    <p class="content-header__category">Thông báo</p>
+                </a>
+                <i class="fa-solid fa-chevron-right content-header__icon"></i>
+                <a href="#" class="content-header__link">
+                    <p class="content-header__title">
+                        @Html.DisplayFor(model => model.SingleNews.NewsTitle)
+                    </p>
+                </a>
+            </div>
+            <!-- Content Category -->
+            @*<div class="content-category">
+                    <div class="content-category__box">
+                        <a href="#" class="content-category__box-link">
+                            Trang chủ
+                        </a>
+                    </div>
+
+                    <div class="content-category__box">
+                        <a href="#" class="content-category__box-link">
+                            Thông báo
+                        </a>
+                    </div>
+                </div>*@
+
+            <!-- Content title -->
+            <div class="content-title">
+                <p class="content-title__title">
+                    @Html.DisplayFor(model => model.SingleNews.NewsTitle)
+                </p>
+            </div>
+
+            <!-- Content author -->
+            <div class="content-author">
+                <p class="content-author-left">
+                    Người đăng: Admin
+                </p>
+                <div class="content-author-right">
+                    Chủ Nhật, ngày 16/06/2024
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="main-content">
+                <img src="~/Images/Upload/@Model.SingleNews.MainImage" alt="" class="main-content__img">
+                <p class="main-content__p">
+                    @SplitIntoParagraphs(Model.SingleNews.NewsDesc)
+                </p>
+                <img src="~/Images/Upload/@Model.SingleNews.MainImage" alt="" class="main-content__img">
+                <p class="main-content__p">
+                    @SplitIntoParagraphs(Model.SingleNews.NewsDesc)
+                </p>
+            </div>
+
+            <!-- CONTENT BOTTOM -->
+            <div class="content-bottom">
+                <div class="content-bottom__title">
+                    Các bài viết khác
+                </div>
+
+                <div class="content-bottom__list">
+                    @foreach (var news in Model.NewsList)
+                    {
+                        <div class="content-bottom__card">
+                            <a href="/News/ViewDetails/@news.ID" class="content-bottom__link">
+                                <img src="~/Images/Upload/@news.MainImage" alt="" class="content-bottom__img">
+                                <div class="content-bottom__text">
+                                    @news.NewsTitle
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Content right -->
+        <div class="content-right">
+            <div class="right-header">
+                <p class="right-header__title">Các bài viết liên quan</p>
+            </div>
+            @foreach (var news in Model.NewsList)
+            {
+                <div class="right-card">
+                    <div class="right-card__cate">
+                        <a href="/News/ViewDetails/@news.ID" class="right-card__link">
+                            <img src="~/Images/Upload/@news.MainImage" alt="" class="right-card__img">
+                            <div class="right-card__text">
+                                <p class="right-card__title">
+                                    @news.NewsTitle
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

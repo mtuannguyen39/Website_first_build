@@ -43,7 +43,7 @@
                 @foreach (var news in Model.Take(1))
                 {
                     <div class="box">
-                        <a href="#" class="box-link">
+                        <a href="/News/ViewDetails/@news.ID" class="box-link">
                             <img src="~/Images/Upload/@news.MainImage" alt="" class="img-box">
                             <p class="box__title">@news.NewsTitle</p>
                             <p class="box__des">@news.NewsDesc</p>
@@ -54,7 +54,7 @@
                     @foreach(var news in Model.Take(5))
                     {
                         <div class="box-small">
-                            <a href="#" class="box-link__right">
+                            <a href="/News/ViewDetails/@news.ID" class="box-link__right">
                                 <img src="~/Images/Upload/@news.MainImage" alt="" class="img-box__small">
                                 <p class="box__title-next">@news.NewsTitle</p>
                             </a>
@@ -67,7 +67,7 @@
                 <div class="card-right">
                     @foreach(var news in Model)
                     {
-                        <a href="#" class="card-right__link">
+                        <a href="/News/ViewDetails/@news.ID" class="card-right__link">
                             <img src="~/Images/Upload/@news.MainImage" alt="" class="card-right__img">
                             <p class="card-right__title">@news.NewsTitle</p>
                         </a>
@@ -81,7 +81,7 @@
                     <div class="card-holder">
                         @foreach(var news in Model)
                         {
-                            <a href="#" class="card-holder__link">
+                            <a href="/News/ViewDetails/@news.ID" class="card-holder__link">
                                 <div class="card-holder__fore t1">
                                     <img src="~/Images/Upload/@news.MainImage" alt="" class="card-holder__img">
                                     <p class="card-holder__text">
@@ -97,7 +97,7 @@
             @foreach(var news in Model)
             {
                 <div class="grid">
-                    <a href="#" class="card-list-link">
+                    <a href="/News/ViewDetails/@news.ID" class="card-list-link">
                         <div class="card">
                             <img src="~/Images/Upload/@news.MainImage" alt="" class="card-img">
                             <div class="card-text">

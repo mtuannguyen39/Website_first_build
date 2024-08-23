@@ -31,5 +31,7 @@ namespace Website_first_build.Models
         public virtual MinistryYear MinistryYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewsImage> NewsImages { get; set; }
+        //public New SingleNews { get; set; }
+        //public IEnumerable<New> NewsList { get; set; }
     }
 }
