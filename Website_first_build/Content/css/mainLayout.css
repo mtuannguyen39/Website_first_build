@@ -163,6 +163,7 @@
 .content-left__box {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 .box-small {
@@ -213,7 +214,7 @@
 
 .content-title-right {
     /*margin-top: -250px;*/
-    margin-top: -519px;
+    margin-top: -632px;
     margin-right: 150px;
     font-family: "Montserrat", sans-serif;
     font-size: 30px;

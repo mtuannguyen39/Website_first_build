@@ -1,0 +1,180 @@
+﻿@*@model IEnumerable<Website_first_build.Models.New>*@
+@using Website_first_build.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<New>
+@*@model Website_first_build.Models.CategoryIndexViewModel*@
+
+@{
+    ViewBag.Title = "CategoryIndex";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    <link rel="stylesheet" href="~/Content/css/Category.css">
+
+}
+
+<!-- BODY -->
+<div class="container-cate">
+    <div class="content">
+        <!-- Content header -->
+        <div class="content__header">
+            <h1 class="content__title">
+                Tin Tức
+            </h1>
+        </div>
+        <div class="both-content">
+            <!-- Content left -->
+            <!-- margin left 50px -->
+            <div class="content-left">
+                <div class="left-card">
+                    @foreach(var news in Model.Take(1))
+                    {
+                        <a href="/News/ViewDetails/@news.ID" class="card-link">
+                            <div class="left-card__first">
+                                <img src="~/Images/Upload/@news.MainImage" alt="" class="first-img">
+                                <div class="first-text">
+                                    <div class="first-title">
+                                        @news.NewsTitle
+                                    </div>
+                                    <div class="first-des">
+                                        @news.NewsDesc
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    <div class="border-fi"></div>
+
+                    <div class="card-sec">
+                        @foreach(var news in Model.Take(7))
+                        {
+                            <a href="/News/ViewDetails/@news.ID" class="card-link-sec">
+                                <div class="card-link__hori">
+                                    <img src="~/Images/Upload/@news.MainImage" alt="#" class="card-img">
+                                    <div class="hori-text">
+                                        <div class="hori-title">
+                                            @news.NewsTitle
+                                        </div>
+                                        <div class="hori-des">
+                                            @news.NewsDesc
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+
+                    <!-- Page list -->
+                    <div class="page-list">
+                        <!-- Previous button -->
+                        @if (Model.PageNumber > 1)
+                        {
+                            @*<i class='fa-solid fa-angle-left'></i>*@
+                            <button class="page-list__icon">
+                                @Html.ActionLink("<i class='fa-solid fa-angle-left'></i>", "CategoryIndex", new { page = Model.PageNumber - 1 }, htmlAttributes: new { @class = "page-list__icon-link", @style = "text-decoration: none;" })
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="page-list__icon" disabled>
+                                <i class="fa-solid fa-angle-left"></i>
+                            </button>
+                        }
+                        <!-- Page numbers -->
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            <button class="page-list__text @(i == Model.PageNumber ?"active" : "")">
+                                @Html.ActionLink(i.ToString(), "CategoryIndex", new { page = i })
+                            </button>
+                        }
+
+                        <!-- Next button -->
+                        @if (Model.PageNumber < Model.PageCount)
+                        {
+                            @*<i class='fa-solid fa-angle-right'></i>*@
+                            <button class="page-list__icon">
+                                @Html.ActionLink("<i class='fa-solid fa-angle-right'></i>", "CategoryIndex", new { page = Model.PageNumber + 1 }, htmlAttributes: new { @class = "page-list__icon-link", @style = "text-decoration:none;" })
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="page-list__icon" disabled>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </button>
+                        }
+                        @* Thêm phân trang vào *@
+                        @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount*@
+                        @*@Html.PagedListPager(Model, page => Url.Action("CategoryIndex", new { page }))*@
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content right -->
+            <!-- margin-right 50px -->
+            <div class="content-right__cate">
+                <div class="border-left"></div>
+                <div class="right-card">
+                    <div class="right-card__header">
+                        @foreach(var news in Model.Take(5))
+                        {
+                            <a href="/News/ViewDetails/@news.ID" class="header__link">
+                                <img src="~/Images/Upload/@news.MainImage" alt="" class="right-card__img">
+                                <div class="right-card__text">
+                                    @news.NewsTitle 
+                                </div>
+                            </a>
+                        }
+                    </div>
+
+                    <!-- Thông báo cate-->
+                    <div class="right-card__title">Thông báo</div>
+                    <div class="title-bttm"></div>
+                    <div class="right-card__body">
+                        @foreach(var news in Model.Take(4))
+                        {
+                            <a href="/News/ViewDetails/@news.ID" class="header__link">
+                                <img src="~/Images/Upload/@news.MainImage" alt="" class="right-card__img">
+                                <div class="right-card__text">
+                                    @news.NewsTitle
+                                </div>
+                            </a>
+                        }
+
+                    </div>
+
+                    <!--Bảng tin giáo xứ-->
+                    <div class="right-card__title">Bảng tin Giáo xứ</div>
+                    <div class="title-bttm"></div>
+                    <div class="right-card__body">
+                        @foreach(var news in Model.Take(4))
+                        {
+                            <a href="/News/ViewDetails/@news.ID" class="header__link">
+                                <img src="~/Images/Upload/@news.MainImage" alt="" class="right-card__img">
+                                <div class="right-card__text">
+                                    @news.NewsTitle
+                                </div>
+                            </a>
+                        }
+
+                    </div>
+
+                    <!-- Bảng tin TNTT -->
+                    <div class="right-card__title">Bảng tin TNTT</div>
+                    <div class="title-bttm"></div>
+                    <div class="right-card__body">
+                        @foreach(var news in Model.Take(4))
+                        {
+                            <a href="/News/ViewDetails/@news.ID" class="header__link">
+                                <img src="~/Images/Upload/@news.MainImage" alt="" class="right-card__img">
+                                <div class="right-card__text">
+                                    @news.NewsTitle
+                                </div>
+                            </a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

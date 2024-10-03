@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Website_first_build.Models;
 using Website_first_build.Filter;
+using PagedList;
 
 namespace Website_first_build.Controllers
 {
@@ -189,6 +190,33 @@ namespace Website_first_build.Controllers
         {
             var cateList = db.Categories.ToList();
             return PartialView(cateList);
+        }
+
+        public ActionResult CategoryIndex(int? category, int? page, string SearchString)
+        {
+            var news = db.News.Include(p => p.Category);
+
+            if (category == null)
+            {
+                news = db.News.OrderByDescending(x => x.NewsTitle);
+            }
+            else news = db.News.OrderByDescending(x => x.CategoryID).Where(x => x.CategoryID == category);
+            // Tìm kiếm theo tên
+            if (!String.IsNullOrEmpty(SearchString)) news = news.Where(s => s.NewsTitle.ToLower().Contains(SearchString));
+
+            // If page == null thì đặt lại là 1 
+            if (page == null) page = 1;
+
+            news = db.News.Include(n => n.Category).OrderBy(n => n.ID);
+            // tạo kích thước trang (pageSize) hiển thị trên 1 trang
+            int pageSize = 4;
+
+            // Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page,
+            // nếu page == null thì lấy giá trị 1 cho biến pageNumber
+            int pageNumber = (page ?? 1);
+            
+            // Trả về các Tin tức được phân trang theo kích thước và số trang.
+            return View(news.ToPagedList(pageNumber, pageSize));
         }
     }
 }

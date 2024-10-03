@@ -33,7 +33,7 @@ namespace Website_first_build.Controllers
             return View();
         }
 
-        public ActionResult Main(int? category, int? page, string SearchString, double min = double.MinValue, double max = double.MaxValue) 
+        public ActionResult Main(int? category, int? page, string SearchString) 
         {
             // Tạo tin tức và có tham chiếu đến category
             var news = db.News.Include(p => p.Category);
@@ -53,7 +53,7 @@ namespace Website_first_build.Controllers
             }
 
             // Khai báo mỗi trang 5 sản phẩm
-            int pageSize = 5;
+            int pageSize = 8;
             // Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page,
             //còn nếu page == null thì lấy giá trị 1 cho biến pageNumber
             int pageNumber = (page ?? 1);
@@ -63,6 +63,11 @@ namespace Website_first_build.Controllers
 
             var newsItems = db.News.ToList();
             return View(news.ToPagedList(pageNumber,pageSize));
+        }
+        public PartialViewResult CategoryPartial()
+        {
+            var cateList = db.Categories.ToList();
+            return PartialView(cateList);
         }
     }
 }

@@ -65,7 +65,7 @@
             <div class="content-right">
                 <p class="content-title-right">Thông báo</p>
                 <div class="card-right">
-                    @foreach(var news in Model)
+                    @foreach(var news in Model.Take(6))
                     {
                         <a href="/News/ViewDetails/@news.ID" class="card-right__link">
                             <img src="~/Images/Upload/@news.MainImage" alt="" class="card-right__img">
@@ -82,7 +82,7 @@
                         @foreach(var news in Model)
                         {
                             <a href="/News/ViewDetails/@news.ID" class="card-holder__link">
-                                <div class="card-holder__fore t1">
+                                <div class="card-holder__fore">
                                     <img src="~/Images/Upload/@news.MainImage" alt="" class="card-holder__img">
                                     <p class="card-holder__text">
                                         @news.NewsTitle
